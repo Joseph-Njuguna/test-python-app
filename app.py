@@ -1,11 +1,18 @@
 # main.py
 import time
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
 
 app = FastAPI(
     title="Balance Checker API",
     description="A simple API to simulate checking a bank balance with a fixed 2-second processing time."
 )
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    """Redirect root to `/hello`."""
+    return RedirectResponse(url="/hello", status_code=302)
 
 @app.get("/hello")
 def hello():
