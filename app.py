@@ -7,6 +7,9 @@ app = FastAPI(
     description="A simple API to simulate checking a bank balance with a fixed 2-second processing time."
 )
 
+@app.get("/hello")
+def hello():
+    return {"status_code": 00, "message": "Hello World"}
 @app.get("/check_balance/{account_id}", summary="Check Account Balance")
 def check_balance(account_id: int):
     """
@@ -24,6 +27,7 @@ def check_balance(account_id: int):
     if account_id == 12345:
         # Placeholder for actual data retrieval
         balance_data = {
+            "status_code": 00,
             "account_id": account_id,
             "balance": 1500.75,
             "currency": "USD",
